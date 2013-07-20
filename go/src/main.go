@@ -9,9 +9,6 @@ package main
 
 
 import (
-	//	"mylib"
-	//	"os"
-	//	"http"
 	"fmt"
 //	"time"
 	"io"
@@ -37,9 +34,9 @@ func helloHandler(w http.ResponseWriter, r * http.Request) {
 	io.WriteString(w, "hello world ! \n")
 }
 
-func main() {
-	http.HandleFunc("/hello", helloHandler)
-	err := http.ListenAndServe(":8080", nil)
+func main_bak() {
+	http.HandleFunc("/", helloHandler)
+	err  := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe:", err.Error())
 	}
