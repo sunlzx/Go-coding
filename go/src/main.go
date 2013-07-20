@@ -7,17 +7,40 @@
  */
 package main
 
-import "fmt"
 
 import (
-	"mylib"
-	"os"
+	//	"mylib"
+	//	"os"
+	//	"http"
+	"fmt"
+//	"time"
+	"io"
+	"net/http"
+	"log"
 )
 
-func main() {
-	fmt.Println("Hello world!")
-	mylib.Hello()
-	fmt.Println(os.Getpid())
-	fmt.Println(os.Getuid())
+var c = make(chan int)
+var a string
 
+func f() {
+	a = "hello"
+
+//	c <- 0
+	<-c
+	fmt.Print("f")
+
+	c <- 0
+
+}
+
+func helloHandler(w http.ResponseWriter, r * http.Request) {
+	io.WriteString(w, "hello world ! \n")
+}
+
+func main() {
+	http.HandleFunc("/hello", helloHandler)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe:", err.Error())
+	}
 }
