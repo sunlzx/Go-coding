@@ -177,7 +177,7 @@ func init2() {
 	}
 }
 
-func main() {
+func main_bak() {
 	fmt.Println("xx")
 	init2()
 	http.HandleFunc("/upload", uploadHandler)
